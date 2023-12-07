@@ -26,6 +26,11 @@ public class QuestionController {
         return questionService.getQuestionbyCategory(category);
 
     }
+    @GetMapping("difficultylevel/{difficultylevel}")
+    public ResponseEntity<List<Question>> getQuestionbyDifficultyLevel(@PathVariable String difficultylevel){
+        return questionService.getQuestionbyDifficultyLevel(difficultylevel);
+
+    }
     @PostMapping("add")
     public ResponseEntity<String> addQuestion(@RequestBody Question question){
         return questionService.addQuestion(question);

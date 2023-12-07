@@ -54,4 +54,13 @@ public class QuestionService {
         }
     }
 
+    public ResponseEntity<List<Question>> getQuestionbyDifficultyLevel(String difficultylevel) {
+        try {
+            return new ResponseEntity<>(questionDao.findBydifficultyLevel(difficultylevel), HttpStatus.OK);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+    }
 }
