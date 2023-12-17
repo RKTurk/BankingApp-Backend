@@ -67,4 +67,14 @@ public class QuizService {
         }
         return new ResponseEntity<>(right,HttpStatus.OK);
     }
+
+    public ResponseEntity<List<Quiz>> getAllQuestions() {
+        try {
+            return new ResponseEntity<>(quizDao.findAll(), HttpStatus.OK);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+    }
 }
