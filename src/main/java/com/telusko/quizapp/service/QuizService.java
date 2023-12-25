@@ -3,16 +3,15 @@ package com.telusko.quizapp.service;
 
 import com.telusko.quizapp.dao.QuestionDao;
 import com.telusko.quizapp.dao.QuizDao;
-import com.telusko.quizapp.model.Question;
-import com.telusko.quizapp.model.QuestionWrapper;
-import com.telusko.quizapp.model.Quiz;
-import com.telusko.quizapp.model.Response;
+import com.telusko.quizapp.dao.QuizScoreDao;
+import com.telusko.quizapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +21,8 @@ public class QuizService {
     QuizDao quizDao;
     @Autowired
     QuestionDao questionDao;
+    @Autowired
+    private QuizScoreDao quizScoreDao;
 
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
 
@@ -67,6 +68,12 @@ public class QuizService {
                 }
             }
         }
+        // Store in the database
+        QuizScore quizScore = new QuizScore();
+        quizScore.setScore(right);
+        quizScore.setName("Rizwan");
+        quizScore.setAttemptedOn(new Date());
+        quizScoreDao.save(quizScore);
         return new ResponseEntity<>(right,HttpStatus.OK);
     }
 
