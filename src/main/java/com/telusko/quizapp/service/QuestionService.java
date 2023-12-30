@@ -63,4 +63,7 @@ public class QuestionService {
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
+    public List<Object[]> countQuestionsByCategory() {
+        return questionDao.countByCategory();
+    }
 }

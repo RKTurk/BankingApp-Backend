@@ -40,4 +40,8 @@ public class QuestionController {
     public ResponseEntity<String> deleteQuestion(@PathVariable Integer id){
         return questionService.deleteQuestion(id);
     }
+    @GetMapping("/count-by-category")
+    public List<Object[]> countQuestionsByCategory() {
+        return questionService.countQuestionsByCategory();
+    }
 }
