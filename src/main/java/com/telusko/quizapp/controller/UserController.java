@@ -27,4 +27,15 @@ public class UserController {
             return "{\"error\":\"Invalid credentials\"}";
         }
     }
+    @PostMapping("/register")
+    public String register(@RequestBody User user) {
+        User existingUser = userDao.findByUsername(user.getUsername());
+        if(existingUser!=null){
+            return "{\"error\":\"User with this username already exist\"}";
+        }
+        else {
+            userDao.save(user);
+            return "{\"token\":\"User_Created_Successfully\"}";
+        }
+    }
 }
