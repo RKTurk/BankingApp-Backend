@@ -55,7 +55,7 @@ public class QuizService {
     }
 
 
-    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
+    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses, String username) {
         Quiz quiz = quizDao.findById(id).get();
         List<Question> questions = quiz.getQuestions();
         int right = 0;
@@ -67,11 +67,13 @@ public class QuizService {
                     break; // Move to the next response once a match is found
                 }
             }
+            i++; // Calculate the total number of questions in the quiz
         }
         // Store in the database
         QuizScore quizScore = new QuizScore();
         quizScore.setScore(right);
-        quizScore.setName("Rizwan");
+        quizScore.setTotal_score(i);
+        quizScore.setName(username);
         quizScore.setAttemptedOn(new Date());
         quizScoreDao.save(quizScore);
         return new ResponseEntity<>(right,HttpStatus.OK);

@@ -18,6 +18,9 @@ public class QuizScore {
     @Column(name = "score")
     private Integer score;
 
+    @Column(name = "total_score")
+    private Integer total_score;
+
     @Column(name = "name")
     private String name;
 
