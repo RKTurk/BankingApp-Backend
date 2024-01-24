@@ -1,4 +1,4 @@
-package com.telusko.quizapp.config;
+package com.telusko.bankingapplication.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
