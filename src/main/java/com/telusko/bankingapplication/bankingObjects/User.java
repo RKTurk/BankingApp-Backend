@@ -9,12 +9,15 @@ public class User {
     private long id;
     private String name;
 
+    private String cnic;
+
     public User() {
     }
 
-    public User(long id, String name) {
+    public User(long id, String name, String cnic) {
         this.id = id;
         this.name = name;
+        this.cnic = cnic;
     }
 
     @Id
@@ -34,6 +37,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+    @Column(name = "cnic", nullable = false)
+    public String getCnic(){
+        return cnic;
+    }
+
+    public void setCnic(String cnic) {
+        this.cnic = cnic;
     }
 
     @Override

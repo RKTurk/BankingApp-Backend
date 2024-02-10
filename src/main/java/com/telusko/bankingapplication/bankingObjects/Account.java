@@ -9,14 +9,17 @@ public class Account {
     private long id;
     private long userId;
     private double balance;
+    private String accountId;
+
 
     public Account() {
     }
 
-    public Account(long id, long userId, double balance) {
+    public Account(long id, long userId, double balance, String accountId) {
         this.id = id;
         this.userId = userId;
         this.balance = balance;
+        this.accountId = accountId;
     }
 
     @Id
@@ -45,5 +48,12 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+    public String getAccountId() {
+        return accountId;
     }
 }

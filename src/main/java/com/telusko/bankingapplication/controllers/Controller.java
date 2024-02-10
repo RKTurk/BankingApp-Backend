@@ -17,6 +17,7 @@ import com.telusko.bankingapplication.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @RestController
@@ -55,9 +56,10 @@ public class Controller {
     }
 
     @RequestMapping("/adduser")
-    public User createUser(@RequestParam("name") String name) {
+    public User createUser(@RequestParam("name") String name, @RequestParam("cnic") String cnic) {
         User user = new User();
         user.setName(name);
+        user.setCnic(cnic);
         return userRepository.save(user);
     }
 
@@ -84,7 +86,17 @@ public class Controller {
         Account account = new Account();
         account.setBalance(balance);
         account.setUserId(userId);
+        account.setAccountId(generateRandom10DigitNumber());
         return accountRepository.save(account);
+    }
+    // Method to generate a random 10-digit number for Account Id
+    private String generateRandom10DigitNumber() {
+        Random random = new Random();
+        long randomNumber = random.nextLong() % 10000000000L; // Ensure it's 10 digits
+        if(randomNumber < 0) {
+            randomNumber *= -1;
+        }
+        return String.format("%010d", randomNumber);
     }
 
     @RequestMapping(value = "/depositmoney")
